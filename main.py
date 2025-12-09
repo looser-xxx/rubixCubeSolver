@@ -3,16 +3,20 @@
 import numpy as np
 
 
-
-
-
 class Cube:
     def __init__(self, stateData) -> None:
         self.state=np.array(stateData)
 
 
 
-
+    def printState(self):
+        face_names = ["Top (Yellow)", "Front (Red)", "Bottom (White)", "Back (Orange)", "Left (Blue)", "Right (Green)"]
+        print("printing the current state of the cube: ")
+        print()
+        for i, face in enumerate(self.state):
+            print(f"--- {face_names[i]} (Index {i}) ---")
+            print(face)
+            print()
 
     def isValidState(self):
         allStickers=np.array(self.state).flatten()
