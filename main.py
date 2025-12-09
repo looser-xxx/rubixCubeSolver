@@ -60,9 +60,20 @@ class Cube:
             self.state[1][0][2], self.state[1][0][1], self.state[1][0][0] = self.state[4][0][2], self.state[4][0][1], self.state[4][0][0]
             self.state[4][0][2], self.state[4][0][1], self.state[4][0][0] = temp[0], temp[1], temp[2]
 
-
-
-
+    def moveWhite(self, clockWise=True):
+        temp = np.array([self.state[1][2][0], self.state[1][2][1], self.state[1][2][2]])
+        if clockWise:
+            self.state[2] = np.rot90(self.state[2], k=-1)
+            self.state[1][2][0], self.state[1][2][1], self.state[1][2][2] = self.state[4][2][0], self.state[4][2][1], self.state[4][2][2]
+            self.state[4][2][0], self.state[4][2][1], self.state[4][2][2] = self.state[3][0][2], self.state[3][0][1], self.state[3][0][0]
+            self.state[3][0][0], self.state[3][0][1], self.state[3][0][2] = self.state[5][2][2], self.state[5][2][1], self.state[5][2][0]
+            self.state[5][2][0], self.state[5][2][1], self.state[5][2][2] = temp[0], temp[1], temp[2]
+        else:
+            self.state[2] = np.rot90(self.state[2], k=1)
+            self.state[1][2][0], self.state[1][2][1], self.state[1][2][2] = self.state[5][2][0], self.state[5][2][1], self.state[5][2][2]
+            self.state[5][2][0], self.state[5][2][1], self.state[5][2][2] = self.state[3][0][2], self.state[3][0][1], self.state[3][0][0]
+            self.state[3][0][0], self.state[3][0][1], self.state[3][0][2] = self.state[4][2][2], self.state[4][2][1], self.state[4][2][0]
+            self.state[4][2][0], self.state[4][2][1], self.state[4][2][2] = temp[0], temp[1], temp[2]
 
 
 
