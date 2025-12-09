@@ -1,0 +1,24 @@
+
+
+
+
+
+print("*********welcome to rubics cube soolver*********")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
