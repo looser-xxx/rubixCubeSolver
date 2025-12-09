@@ -91,4 +91,21 @@ class Cube:
 
 
 
+    def moveGreen(self, clockWise=True):
+        temp = np.array([self.state[0][0][2], self.state[0][1][2], self.state[0][2][2]])
 
+        if clockWise:
+            self.state[5] = np.rot90(self.state[5], k=-1)
+
+            self.state[0][0][2], self.state[0][1][2], self.state[0][2][2] = self.state[1][0][2], self.state[1][1][2], self.state[1][2][2]
+            self.state[1][0][2], self.state[1][1][2], self.state[1][2][2] = self.state[2][0][2], self.state[2][1][2], self.state[2][2][2]
+            self.state[2][0][2], self.state[2][1][2], self.state[2][2][2] = self.state[3][2][0], self.state[3][1][0], self.state[3][0][0]
+            self.state[3][0][0], self.state[3][1][0], self.state[3][2][0] = temp[2], temp[1], temp[0]
+
+        else:
+            self.state[5] = np.rot90(self.state[5], k=1)
+
+            self.state[0][0][2], self.state[0][1][2], self.state[0][2][2] = self.state[3][2][0], self.state[3][1][0], self.state[3][0][0]
+            self.state[3][0][0], self.state[3][1][0], self.state[3][2][0] = self.state[2][2][2], self.state[2][1][2], self.state[2][0][2]
+            self.state[2][0][2], self.state[2][1][2], self.state[2][2][2] = self.state[1][0][2], self.state[1][1][2], self.state[1][2][2]
+            self.state[1][0][2], self.state[1][1][2], self.state[1][2][2] = temp[0], temp[1], temp[2]
