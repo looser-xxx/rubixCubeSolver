@@ -191,11 +191,18 @@ class Solver:
                 "top":[('U',True),('R',False),('U',False),('R',True)],
             } 
 
-    def runFormula(self,facing,formula):
+
+
+
+    def runFacingMove(self,facing,move,clockWise=True):
         moves=self.orientationMap[facing]
+        self.moveCube(moves[move],clockWise)
+        
+
+    def runFormula(self,facing,formula):
         algorithm=self.formula[formula]
         for step in algorithm:
-            self.moveCube(moves[step[0]],step[1])
+            self.runFacingMove(facing,step[0],step[1])
 
     def moveCube(self,face='r',clockWise=True):
         match face:
