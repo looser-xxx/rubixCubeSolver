@@ -158,26 +158,50 @@ class Cube:
 
 
 
-def inputState():
-    print("please enter the state of your cube.")
-    print()
-    print("correct oriantation of cube: ")
-    print("Top: Yellow, Front: Red.....")
-    print()
-    print()
-    cube=np.empty((6,3,3), dtype='<U1')
-    faceColors = ['Yellow','Red', 'White', 'Orange', 'Blue', 'Green']
-    for face, color in zip(cube, faceColors):
-        print(f"enter values of {color} faces: ")
-        for x in range(3):
-            for y in range(3):
-                face[x][y]=str(input())
 
-    return cube
+
+
+class Solver:
+    def __init__(self) -> None:
+        self.myCube=Cube(inputState())
+        
+
+    
 
 
 
 
-myCube=Cube(inputState())
 
-myCube.printState()
+    def inputState():
+        print("please enter the state of your cube.")
+        print()
+        print("correct oriantation of cube: ")
+        print("Top: Yellow, Front: Red.....")
+        print()
+        print()
+       
+        while True:
+            cube=np.empty((6,3,3), dtype='<U1')
+            faceColors = ['Yellow','Red', 'White', 'Orange', 'Blue', 'Green']
+            for face, color in zip(cube, faceColors):
+                print(f"enter values of {color} faces: ")
+                for x in range(3):
+                    for y in range(3):
+                        face[x][y]=str(input()) 
+
+            testCube=Cube(cube)
+            if testCube.isValidState():
+                print("state accepted: ")
+                return cube
+            else:
+                print("\n!!! Invalid Cube State Detected. Please try again. !!!\n")
+    
+        
+
+
+
+
+
+
+
+
