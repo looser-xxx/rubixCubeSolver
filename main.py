@@ -3,6 +3,31 @@
 import numpy as np
 
 
+
+
+
+
+
+
+
+
+def solvedState():
+    state=np.empty((6,3,3), dtype='<U1')
+    faceColors=['Y', 'R', 'W', 'O', 'B', 'G']
+    for i, color in enumerate(faceColors):
+        state[i, :, :] = color
+
+    return state
+
+
+
+
+
+
+
+
+
+
 class Cube:
     def __init__(self, stateData) -> None:
         self.state=np.array(stateData)
@@ -128,3 +153,24 @@ class Cube:
             self.state[1][0][0], self.state[1][1][0], self.state[1][2][0] = self.state[2][0][0], self.state[2][1][0], self.state[2][2][0]
             self.state[2][0][0], self.state[2][1][0], self.state[2][2][0] = self.state[3][2][2], self.state[3][1][2], self.state[3][0][2]
             self.state[3][0][2], self.state[3][1][2], self.state[3][2][2] = temp[2], temp[1], temp[0]
+
+
+
+
+
+
+
+
+
+
+defCube=solvedState()
+testCube=Cube(defCube)
+
+testCube.printState()
+
+testCube.moveBlue()
+
+
+testCube.printState()
+
+
