@@ -32,7 +32,7 @@ class Cube:
     def __init__(self, stateData) -> None:
         self.state=np.array(stateData)
 
-    def resetDefault(self):
+    def reset(self):
         faceColors = ['Y','R', 'W', 'O', 'B', 'G']
 
         for i, color in enumerate(faceColors):
@@ -155,3 +155,29 @@ class Cube:
             self.state[1][0][0], self.state[1][1][0], self.state[1][2][0] = self.state[2][0][0], self.state[2][1][0], self.state[2][2][0]
             self.state[2][0][0], self.state[2][1][0], self.state[2][2][0] = self.state[3][2][2], self.state[3][1][2], self.state[3][0][2]
             self.state[3][0][0], self.state[3][1][0], self.state[3][2][0] = temp[2], temp[1], temp[0]
+
+
+
+def inputState():
+    print("please enter the state of your cube.")
+    print()
+    print("correct oriantation of cube: ")
+    print("Top: Yellow, Front: Red.....")
+    print()
+    print()
+    cube=np.empty((6,3,3), dtype='<U1')
+    faceColors = ['Yellow','Red', 'White', 'Orange', 'Blue', 'Green']
+    for face, color in zip(cube, faceColors):
+        print(f"enter values of {color} faces: ")
+        for x in range(3):
+            for y in range(3):
+                face[x][y]=str(input())
+
+    return cube
+
+
+
+
+myCube=Cube(inputState())
+
+myCube.printState()
