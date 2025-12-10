@@ -32,7 +32,11 @@ class Cube:
     def __init__(self, stateData) -> None:
         self.state=np.array(stateData)
 
+    def resetDefault(self):
+        faceColors = ['Y','R', 'W', 'O', 'B', 'G']
 
+        for i, color in enumerate(faceColors):
+            self.state[i, :, :] = color
 
     def printState(self):
         face_names = ["Top (Yellow)", "Front (Red)", "Bottom (White)", "Back (Orange)", "Left (Blue)", "Right (Green)"]
