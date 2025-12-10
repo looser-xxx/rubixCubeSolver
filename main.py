@@ -164,15 +164,30 @@ class Cube:
 class Solver:
     def __init__(self) -> None:
         self.myCube=Cube(inputState())
-        
+       
+
+    def moveCube(self,face='r'):
+        match face:
+            case 'y':
+                self.myCube.moveYellow()
+            case 'r':
+                self.myCube.moveRed()
+            case 'w':
+                self.myCube.moveWhite()
+            case 'o':
+                self.myCube.moveOrange()
+            case 'b':
+                self.myCube.moveBlue()
+            case 'g':
+                self.myCube.moveGreen()
+
+ 
+
+
 
     
 
-
-
-
-
-    def inputState():
+    def inputState(self):
         print("please enter the state of your cube.")
         print()
         print("correct oriantation of cube: ")
