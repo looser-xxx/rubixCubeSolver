@@ -164,28 +164,55 @@ class Cube:
 class Solver:
     def __init__(self) -> None:
         self.myCube=Cube(inputState())
-       
+        self.orientationMap = {
+            # --- Standard Side Faces ---
+            'r': {'R': 'g', 'U': 'y', 'L': 'b', 'D': 'w'}, 
+            'o': {'R': 'b', 'U': 'y', 'L': 'g', 'D': 'w'},
+            'g': {'R': 'o', 'U': 'y', 'L': 'r', 'D': 'w'},
+            'b': {'R': 'r', 'U': 'y', 'L': 'o', 'D': 'w'},
+            # --- Yellow Faces (Top) ---
+            'yo': {'R': 'g', 'U': 'o', 'L': 'b', 'D': 'r'},
+            'yb': {'R': 'o', 'U': 'b', 'L': 'r', 'D': 'g'},
+            'yr': {'R': 'b', 'U': 'r', 'L': 'g', 'D': 'o'},
+            'yg': {'R': 'r', 'U': 'g', 'L': 'o', 'D': 'b'},
+            # --- White Faces (Bottom) ---
+            'wr': {'R': 'g', 'U': 'r', 'L': 'b', 'D': 'o'}, 
+            'wb': {'R': 'r', 'U': 'b', 'L': 'o', 'D': 'g'},
+            'wo': {'R': 'b', 'U': 'o', 'L': 'g', 'D': 'r'},
+            'wg': {'R': 'o', 'U': 'g', 'L': 'r', 'D': 'b'}
+        }       
+        self.formula={
+                "baseR":[('R',True),('U',True),('R',False),('U',False)],
+                "baseL":[('L',False),('U',False),('L',True),('U',True)],
+                "midR":[('U',True),('R',True),('U',True),('R',False),('U',False)],
+                "midL":[('U',False),('L',False),('U',False),('L',True),('U',True)],
+                "cross":[('R',True),('U',True),('R',False),('U',True),('R',True),('U',False),('U',False),('R',False)],
+                "corn":[('U',True),('R',True),('U',False),('L',False),('U',True),('R',False),('U',False),('L',True)],
+                "top":[('U',True),('R',False),('U',False),('R',True)],
+            } 
 
-    def moveCube(self,face='r'):
+    def runFormula(self,facing,formula):
+        moves=self.orientationMap[facing]
+        algorithm=self.formula[formula]
+        for step in algorithm:
+            self.moveCube(moves[step[0]],step[1])
+
+    def moveCube(self,face='r',clockWise=True):
         match face:
             case 'y':
-                self.myCube.moveYellow()
+                self.myCube.moveYellow(clockWise)
             case 'r':
-                self.myCube.moveRed()
+                self.myCube.moveRed(clockWise)
             case 'w':
-                self.myCube.moveWhite()
+                self.myCube.moveWhite(clockWise)
             case 'o':
-                self.myCube.moveOrange()
+                self.myCube.moveOrange(clockWise)
             case 'b':
-                self.myCube.moveBlue()
+                self.myCube.moveBlue(clockWise)
             case 'g':
-                self.myCube.moveGreen()
+                self.myCube.moveGreen(clockWise)
 
  
-
-
-
-    
 
     def inputState(self):
         print("please enter the state of your cube.")
