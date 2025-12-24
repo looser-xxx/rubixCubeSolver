@@ -1,5 +1,6 @@
 
 
+from typing_extensions import runtime
 import numpy as np
 
 
@@ -190,6 +191,57 @@ class Solver:
                 "corn":[('U',True),('R',True),('U',False),('L',False),('U',True),('R',False),('U',False),('L',True)],
                 "top":[('U',True),('R',False),('U',False),('R',True)],
             } 
+
+
+    def initWhiteCross(self):
+        centerPosition=[(0,1),(1,2),(2,1),(1,0)]
+        whiteRelative=['U','R','D','L']
+        solved=False
+        moves=self.orientationMap['wr']
+        while True:
+            crossFilled=0
+            for pos in centerPosition:
+                if self.myCube.state[0][pos[0]][pos[1]]=='w'
+                    crossFilled+=1
+            if crossFilled==4:
+                break
+
+            for  pos, move in zip(centerPosition,whiteRelative):
+                if self.myCube.state[2][pos[0]][pos[1]]=='w':
+                    while True:
+                        if self.myCube.state[2][abs(pos[0]-2)][abs(pos[1]-2)]=='w':
+                            self.moveCube('y',True)
+                        else:
+                            self.runFacingMove('w',move,True)
+                            self.runFacingMove('w',move,True)
+
+
+            
+            if self.myCube.state[1][1][0]=='w':
+                while True:
+                    if self.myCube.state[0][1][0]=='w'
+                        self.runFacingMove('r','U',True)
+                    else:
+                        self.runFacingMove('r','L',False)
+                        break
+            elif self.myCube.state[1][1][2]=='w':
+                while True:
+                    if self.myCube.state[0][1][2]=='w'
+                        self.runFacingMove('r','U',True)
+                    else:
+                        self.runFacingMove('r','R',True)
+                        break
+
+            if self.myCube.state[1][2][1]=='w':
+                while True:
+                    if self.myCube.state[0][2][1]=='w'
+                        self.runFacingMove('r','U',True)
+                    else:
+                        self.moveCube('r',True)
+                        break
+            elif self.myCube.state[1][0][1]=='w':
+                self.moveCube('r',True)
+
 
 
 
